@@ -54,5 +54,10 @@ namespace DC
             panel1.DrawToBitmap(panelBitmap, new Rectangle(0, 0, panel1.Width, panel1.Height));
             e.Graphics.DrawImage(panelBitmap, e.MarginBounds);
         }
+
+        private void labledate_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

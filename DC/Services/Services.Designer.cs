@@ -74,7 +74,7 @@
             dataGridView1.RowTemplate.DefaultCellStyle.BackColor = Color.White;
             dataGridView1.RowTemplate.DefaultCellStyle.Font = new Font("Poppins", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(1304, 574);
+            dataGridView1.Size = new Size(1446, 574);
             dataGridView1.TabIndex = 1;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
@@ -108,15 +108,15 @@
             // 
             // button4
             // 
-            button4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            button4.Anchor = AnchorStyles.None;
             button4.BackgroundImage = (Image)resources.GetObject("button4.BackgroundImage");
             button4.BackgroundImageLayout = ImageLayout.Stretch;
             button4.FlatAppearance.BorderSize = 0;
             button4.FlatAppearance.MouseDownBackColor = Color.Transparent;
             button4.FlatStyle = FlatStyle.Flat;
-            button4.Location = new Point(1479, 94);
+            button4.Location = new Point(1601, 92);
             button4.Name = "button4";
-            button4.Size = new Size(117, 53);
+            button4.Size = new Size(137, 55);
             button4.TabIndex = 4;
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
@@ -126,7 +126,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Poppins", 28.2F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.FromArgb(40, 170, 214);
-            label1.Location = new Point(767, 9);
+            label1.Location = new Point(960, 9);
             label1.Name = "label1";
             label1.Size = new Size(239, 82);
             label1.TabIndex = 5;
@@ -137,7 +137,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(194, 240, 255);
-            ClientSize = new Size(1740, 779);
+            ClientSize = new Size(1902, 1033);
             Controls.Add(label1);
             Controls.Add(button4);
             Controls.Add(button3);

@@ -83,9 +83,9 @@
             listBox1.FormattingEnabled = true;
             listBox1.ItemHeight = 30;
             listBox1.Items.AddRange(new object[] { "Mr", "Ms" });
-            listBox1.Location = new Point(265, 198);
+            listBox1.Location = new Point(265, 187);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(58, 30);
+            listBox1.Size = new Size(58, 34);
             listBox1.TabIndex = 3;
             listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
