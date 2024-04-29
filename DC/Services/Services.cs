@@ -15,7 +15,6 @@ namespace DC
     {
         private string connectionString = "Data Source=localhost;Initial Catalog=DentalCare;Integrated Security=True";
 
-        // SQL query to select data from your table
         private string selectQuery = "SELECT * FROM Services";
         public Services()
         {
@@ -26,10 +25,8 @@ namespace DC
         {
             try
             {
-                // Create a connection 
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    // Create a SqlCommand 
                     using (SqlCommand command = new SqlCommand(selectQuery, connection))
                     {
 
@@ -42,7 +39,6 @@ namespace DC
                             adapter.Fill(dataTable);
                         }
 
-                        // Bind the DataTable to the DataGridView
                         dataGridView1.DataSource = dataTable;
                     }
                 }
@@ -64,7 +60,6 @@ namespace DC
         }
         private void LoginUserControl_LoginSuccess(object sender, EventArgs e)
         {
-            // If login is successful, open the desired form
             Addservices newservice = new Addservices();
             newservice.Show();
         }
@@ -73,8 +68,6 @@ namespace DC
             loginControl loginForm = new loginControl();
             if (loginForm.ShowDialog() == DialogResult.OK)
             {
-                // If login is successful, open the registration form
-                // (Replace this with your registration form opening logic)
                 MessageBox.Show("Login successful....");
 
                 Addservices newservice = new Addservices();
@@ -82,7 +75,6 @@ namespace DC
             }
             else
             {
-                // Handle login failure (optional)
                 MessageBox.Show("Login failed. Please try again.");
 
             }
@@ -93,8 +85,6 @@ namespace DC
             loginControl loginForm = new loginControl();
             if (loginForm.ShowDialog() == DialogResult.OK)
             {
-                // If login is successful, open the registration form
-                // (Replace this with your registration form opening logic)
                 MessageBox.Show("Login successful....");
 
                 Editservices newservice = new Editservices();
@@ -102,7 +92,7 @@ namespace DC
             }
             else
             {
-                // Handle login failure (optional)
+
                 MessageBox.Show("Login failed. Please try again.");
 
             }
@@ -114,6 +104,11 @@ namespace DC
             this.Close();
             Dashboard dashboard = new Dashboard();
             dashboard.Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            LoadData();
         }
     }
 }

@@ -24,10 +24,8 @@ namespace DC
         {
             try
             {
-                // Create a connection 
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    // Create a SqlCommand 
                     using (SqlCommand command = new SqlCommand(selectQuery, connection))
                     {
 
@@ -40,7 +38,6 @@ namespace DC
                             adapter.Fill(dataTable);
                         }
 
-                        // Bind the DataTable to the DataGridView
                         dataGridView1.DataSource = dataTable;
                     }
                 }

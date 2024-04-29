@@ -23,10 +23,10 @@ namespace DC
         {
             selectservice selectservice = new selectservice();
 
-           
+
             if (selectservice.ShowDialog() == DialogResult.OK)
             {
-       
+
                 textBox1.Text = selectservice.SelectedDetails;
             }
             string ID = textBox1.Text.Trim();

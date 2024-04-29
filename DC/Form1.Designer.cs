@@ -39,15 +39,19 @@
             // 
             button1.Anchor = AnchorStyles.None;
             button1.AutoSize = true;
-            button1.BackColor = Color.LimeGreen;
-            button1.FlatStyle = FlatStyle.Popup;
+            button1.BackColor = Color.Transparent;
+            button1.BackgroundImage = (Image)resources.GetObject("button1.BackgroundImage");
+            button1.BackgroundImageLayout = ImageLayout.Stretch;
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            button1.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             button1.ForeColor = SystemColors.ButtonHighlight;
-            button1.Location = new Point(349, 598);
+            button1.Location = new Point(290, 598);
             button1.Name = "button1";
             button1.Size = new Size(285, 87);
             button1.TabIndex = 0;
-            button1.Text = "Log In";
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
@@ -55,27 +59,31 @@
             // 
             button2.Anchor = AnchorStyles.None;
             button2.AutoSize = true;
-            button2.BackColor = SystemColors.Highlight;
-            button2.FlatStyle = FlatStyle.Popup;
+            button2.BackColor = Color.Transparent;
+            button2.BackgroundImage = (Image)resources.GetObject("button2.BackgroundImage");
+            button2.BackgroundImageLayout = ImageLayout.Stretch;
+            button2.FlatAppearance.BorderSize = 0;
+            button2.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            button2.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            button2.FlatStyle = FlatStyle.Flat;
             button2.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            button2.ForeColor = SystemColors.ButtonHighlight;
-            button2.Location = new Point(704, 598);
+            button2.ForeColor = Color.Transparent;
+            button2.Location = new Point(645, 598);
             button2.Name = "button2";
             button2.Size = new Size(285, 87);
             button2.TabIndex = 1;
-            button2.Text = "Register";
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
             // pictureBox1
             // 
             pictureBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            pictureBox1.BackColor = SystemColors.ButtonFace;
+            pictureBox1.BackColor = Color.Transparent;
             pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
             pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox1.Location = new Point(462, 81);
+            pictureBox1.Location = new Point(486, 102);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(418, 347);
+            pictureBox1.Size = new Size(257, 300);
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
             // 
@@ -84,8 +92,9 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
+            BackColor = Color.FromArgb(240, 245, 255);
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1406, 747);
+            ClientSize = new Size(1288, 747);
             Controls.Add(pictureBox1);
             Controls.Add(button2);
             Controls.Add(button1);

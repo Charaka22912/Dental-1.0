@@ -33,7 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Invoice\" />
+    <Folder Include="Class\" />
   </ItemGroup>
 
 </Project>

@@ -33,42 +33,11 @@ namespace DC
                 return;
             }
 
-            string connectionString = "Data Source=localhost;Initial Catalog=DentalCare;Integrated Security=True";
 
-            string query = "INSERT INTO Dentist(Dentist_Name,Dentist_Address,ContactNO,JoindDate,Specialization) " +
-                           "VALUES (@name, @Address,@Contact,@JD,@special)";
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            using (SqlCommand command = new SqlCommand(query, connection))
-            {
-
-                command.Parameters.AddWithValue("@name", name);
-                command.Parameters.AddWithValue("@Address", Address);
-                command.Parameters.AddWithValue("@Contact", Contact);
-                command.Parameters.AddWithValue("@JD", JD);
-                command.Parameters.AddWithValue("@special", special);
-                try
-                {
-
-                    connection.Open();
-                    int rowsAffected = command.ExecuteNonQuery();
-                    if (rowsAffected > 0)
-                    {
-                        MessageBox.Show("Data inserted successfully!");
-                        this.Close();
-
-                    }
-                    else
-                    {
-                        MessageBox.Show("No rows were affected.");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error: " + ex.Message);
-                }
-            }
+            DENTIST dENTIST = new DENTIST();
+            dENTIST.saveDentist(name, Address, Contact, JD, special);
+            this.Close();
         }
-        Dentist d1 = new Dentist();
+
     }
 }

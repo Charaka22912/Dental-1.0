@@ -37,10 +37,10 @@ namespace DC
             string username = textBox1.Text;
             string password = textBox2.Text;
 
-            string connectionString = "Data Source=localhost;Initial Catalog=Clinic;Integrated Security=True";
+            string connectionString = "Data Source=localhost;Initial Catalog=DentalCare;Integrated Security=True";
 
 
-            string query = "SELECT COUNT(*) FROM Register WHERE Username = @Username AND Pass_word = @Pass_word";
+            string query = "SELECT COUNT(*) FROM Register WHERE Username = @Username AND Password = @Password";
 
             try
             {
@@ -50,7 +50,7 @@ namespace DC
                 {
 
                     command.Parameters.AddWithValue("@Username", username);
-                    command.Parameters.AddWithValue("@Pass_word", password);
+                    command.Parameters.AddWithValue("@Password", password);
 
 
                     connection.Open();

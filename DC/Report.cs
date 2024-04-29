@@ -13,10 +13,10 @@ namespace DC
 {
     public partial class Report : Form
     {
-        private string connectionString = "Data Source=localhost;Initial Catalog=Clinic;Integrated Security=True";
+        private string connectionString = "Data Source=localhost;Initial Catalog=DentalCare;Integrated Security=True";
 
 
-        private string selectQuery = "SELECT * FROM Invoices";
+        private string selectQuery = "SELECT * FROM Invoice";
         public string SelectedDetails { get; private set; }
 
         public Report()
@@ -75,9 +75,7 @@ namespace DC
             string startDate = dateTimePicker1.Value.ToShortDateString();
             string endDate = dateTimePicker2.Value.ToShortDateString();
 
-            string connectionString = "Data Source=localhost;Initial Catalog=Clinic;Integrated Security=True";
-
-            string query = "SELECT * FROM Invoices " +
+            string query = "SELECT * FROM Invoice " +
                            "WHERE InvoiceDate BETWEEN @StartDate AND @EndDate";
 
             using (SqlConnection connection = new SqlConnection(connectionString))

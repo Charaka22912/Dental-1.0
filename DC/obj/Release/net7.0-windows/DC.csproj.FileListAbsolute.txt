@@ -103,3 +103,4 @@ C:\Users\chara\Desktop\Clinic\DC\DC\obj\Release\net7.0-windows\DC.AddDentist.res
 C:\Users\chara\Desktop\Clinic\DC\DC\obj\Release\net7.0-windows\DC.Dentists.resources
 C:\Users\chara\Desktop\Clinic\DC\DC\obj\Release\net7.0-windows\DC.Selectdentist.resources
 C:\Users\chara\Desktop\Clinic\DC\DC\obj\Release\net7.0-windows\DC.Dentist.DeleteDentist.resources
+C:\Users\chara\Desktop\Clinic\DC\DC\obj\Release\net7.0-windows\DC.PrintInvoice.resources

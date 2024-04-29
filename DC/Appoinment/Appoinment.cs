@@ -18,7 +18,7 @@ namespace DC
         private string connectionString = "Data Source=localhost;Initial Catalog=DentalCare;Integrated Security=True";
 
 
-        private string selectQuery = "SELECT * FROM Appoinments";
+        private string selectQuery = "SELECT A.*, P.Patient_Name FROM Appoinments A INNER JOIN Patients P ON A.PatientID = P.PatientID";
         public string SelectedDetail { get; private set; }
         public Appoinment()
         {
@@ -108,8 +108,11 @@ namespace DC
         {
             string PatientName = textBox1.Text.Trim();
 
-            // Assuming there is a table named Patients with PatientID and PatientName columns
-            string query = "SELECT * FROM Appoinments WHERE PatientID IN (SELECT PatientID FROM Patients WHERE Patient_Name LIKE @PatientName)";
+
+            string query = "SELECT A.*, P.Patient_Name " +
+                           "FROM Appoinments A " +
+                           "INNER JOIN Patients P ON A.PatientID = P.PatientID " +
+                           "WHERE P.Patient_Name LIKE @PatientName";
 
             using (SqlConnection connection = new SqlConnection("Data Source=localhost;Initial Catalog=DentalCare;Integrated Security=True"))
             using (SqlCommand command = new SqlCommand(query, connection))
@@ -133,7 +136,7 @@ namespace DC
             if (e.RowIndex >= 0)
             {
 
-                string selectedPatientID = dataGridView1.Rows[e.RowIndex].Cells["PatientID"].Value.ToString();
+                string selectedPatientID = dataGridView1.Rows[e.RowIndex].Cells["AppoinmentID"].Value.ToString();
 
 
                 Editappoinment editForm = new Editappoinment(selectedPatientID);

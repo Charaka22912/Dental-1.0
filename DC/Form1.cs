@@ -16,13 +16,17 @@ namespace DC
             form2.Show();
             this.Hide();
         }
-
+        public static SqlConnection GetConnection()
+        {
+            string connectionString = "Data Source=localhost;Initial Catalog=DentalCare;Integrated Security=True";
+            SqlConnection connection = new SqlConnection(connectionString);
+            return connection;
+        }
         private void button2_Click(object sender, EventArgs e)
         {
             loginControl loginForm = new loginControl();
             if (loginForm.ShowDialog() == DialogResult.OK)
             {
-                MessageBox.Show("Login successful. Opening registration form...");
 
                 Form3 form3 = new Form3();
                 form3.Show();
@@ -38,7 +42,7 @@ namespace DC
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            GetConnection();
         }
 
     }

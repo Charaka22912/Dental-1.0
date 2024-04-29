@@ -24,27 +24,37 @@ namespace DC
 
             if (s3.ShowDialog() == DialogResult.OK)
             {
-
                 textBox1.Text = s3.SelectedDetails;
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string PatientID = textBox1.Text.Trim();
 
-            string query = "SELECT * FROM Appoinments WHERE PatientID LIKE @PatientID";
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            APPOINTMENT apPOINTMENT = new APPOINTMENT();
+            int rowIndex = 0;
+            apPOINTMENT.DeleteAppointment(rowIndex, dataGridView1);
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            string PatientName = textBox1.Text.Trim();
 
 
-
-
+            string query = "SELECT A.*, P.Patient_Name " +
+                           "FROM Appoinments A " +
+                           "INNER JOIN Patients P ON A.PatientID = P.PatientID " +
+                           "WHERE P.Patient_Name LIKE @PatientName";
 
             using (SqlConnection connection = new SqlConnection("Data Source=localhost;Initial Catalog=DentalCare;Integrated Security=True"))
             using (SqlCommand command = new SqlCommand(query, connection))
             {
-
-                command.Parameters.AddWithValue("@PatientID", "%" + PatientID + "%");
-
+                command.Parameters.AddWithValue("@PatientName", "%" + PatientName + "%");
 
                 connection.Open();
                 DataTable dataTable = new DataTable();
@@ -54,55 +64,7 @@ namespace DC
                     adapter.Fill(dataTable);
                 }
 
-
                 dataGridView1.DataSource = dataTable;
-
-            }
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
-            {
-
-                DataGridViewCell clickedCell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex];
-
-                if (clickedCell != null && clickedCell.Value != null)
-                {
-
-                    string PatientID = dataGridView1.Rows[e.RowIndex].Cells["PatientID"].Value.ToString();
-
-
-                    DialogResult result = MessageBox.Show("Are you sure you want to delete this record?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (result == DialogResult.Yes)
-                    {
-
-                        string deleteQuery = "DELETE  FROM Appoinments WHERE PatientID = @PatientID";
-                        using (SqlConnection connection = new SqlConnection("Data Source=localhost;Initial Catalog=DentalCare;Integrated Security=True"))
-                        using (SqlCommand command = new SqlCommand(deleteQuery, connection))
-                        {
-                            command.Parameters.AddWithValue("@PatientID", PatientID);
-
-
-                            connection.Open();
-                            int rowsAffected = command.ExecuteNonQuery();
-
-
-                            if (rowsAffected > 0)
-                            {
-
-                                dataGridView1.Rows.RemoveAt(e.RowIndex);
-                                MessageBox.Show("Record deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                this.Close();
-                            }
-                            else
-                            {
-                                MessageBox.Show("Failed to delete record.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                        }
-                    }
-                }
             }
         }
     }

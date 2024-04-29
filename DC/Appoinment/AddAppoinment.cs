@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using DC;
 
 namespace DC
 {
@@ -37,56 +38,16 @@ namespace DC
             string DentistID = textBoxdentist.Text.Trim();
             string status = listBox1.Text.Trim();
 
-
-
-
-
             if (string.IsNullOrEmpty(PatientID))
             {
                 MessageBox.Show("Please fill in all required fields.");
                 return;
             }
 
+            APPOINTMENT appointment = new APPOINTMENT();
+            appointment.savedata(PatientID, appoinmentday, DentistID, status);
+            this.Close();
 
-            string connectionString = "Data Source=localhost;Initial Catalog=DentalCare;Integrated Security=True";
-
-
-            string query = "INSERT INTO Appoinments(Appoinment_Date,DentistID ,PatientID,Appoinment_Status) " +
-                           "VALUES (@Appoinmentdate, @DentistID,@PatientID,@status)";
-
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            using (SqlCommand command = new SqlCommand(query, connection))
-            {
-
-                command.Parameters.AddWithValue("@PatientID", PatientID);
-                command.Parameters.AddWithValue("@Appoinmentdate", appoinmentday);
-                command.Parameters.AddWithValue("@status", status);
-                command.Parameters.AddWithValue("@DentistID", DentistID);
-
-                try
-                {
-
-                    connection.Open();
-
-                    int rowsAffected = command.ExecuteNonQuery();
-                    if (rowsAffected > 0)
-                    {
-                        MessageBox.Show("Data inserted successfully!");
-                        this.Close();
-
-
-                    }
-                    else
-                    {
-                        MessageBox.Show("No rows were affected.");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error: " + ex.Message);
-                }
-            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

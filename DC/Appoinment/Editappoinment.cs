@@ -15,10 +15,10 @@ namespace DC
     public partial class Editappoinment : Form
     {
 
-        public Editappoinment(string patientID)
+        public Editappoinment(string AppoinmentID)
         {
             InitializeComponent();
-            textBox1.Text = patientID;
+            textBoxID.Text = AppoinmentID;
         }
 
         private void toolTip1_Popup(object sender, PopupEventArgs e)
@@ -28,13 +28,13 @@ namespace DC
 
         private void Editappoinment_Load(object sender, EventArgs e)
         {
-            string PatientID = textBox1.Text.Trim();
+            string AppoinmentID = textBoxID.Text.Trim();
             string connectionString = "Data Source=localhost;Initial Catalog=DentalCare;Integrated Security=True";
-            string query = "SELECT *FROM Appoinments WHERE PatientID = @PatientID";
+            string query = "SELECT *FROM Appoinments WHERE AppoinmentID = @AppoinmentID";
             using (SqlConnection connection = new SqlConnection(connectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
             {
-                command.Parameters.AddWithValue("@PatientID", PatientID);
+                command.Parameters.AddWithValue("@AppoinmentID", AppoinmentID);
 
                 connection.Open();
 
@@ -42,7 +42,7 @@ namespace DC
 
                 if (reader.Read())
                 {
-                    textBoxID.Text =reader["AppoinmentID"].ToString();
+                    textBox1.Text = reader["PatientID"].ToString();
                     textBox2.Text = reader["DentistID"].ToString();
                     listBox1.Text = reader["Appoinment_Status"].ToString();
 
@@ -68,7 +68,7 @@ namespace DC
                 command.Parameters.AddWithValue("@DentistID", textBox2.Text);
                 command.Parameters.AddWithValue("@AppoinmentStatus", listBox1.Text);
                 command.Parameters.AddWithValue("@PatientID", textBox1.Text);
-                command.Parameters.AddWithValue("@AppoinmentID",textBoxID.Text);
+                command.Parameters.AddWithValue("@AppoinmentID", textBoxID.Text);
 
 
 
