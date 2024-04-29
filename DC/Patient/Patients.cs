@@ -30,39 +30,11 @@ namespace DC
 
         private void Patients_Load(object sender, EventArgs e)
         {
-            LoadData();
+            PATIENTS pATIENTS = new PATIENTS();
+            pATIENTS.LoadData(dataGridView1, selectQuery);
         }
 
-        private void LoadData()
-        {
-            try
-            {
-                // Create a connection 
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    // Create a SqlCommand 
-                    using (SqlCommand command = new SqlCommand(selectQuery, connection))
-                    {
-
-                        connection.Open();
-                        DataTable dataTable = new DataTable();
-
-
-                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
-                        {
-                            adapter.Fill(dataTable);
-                        }
-
-                        // Bind the DataTable to the DataGridView
-                        dataGridView1.DataSource = dataTable;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
-        }
+        
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -79,7 +51,8 @@ namespace DC
 
         private void button5_Click(object sender, EventArgs e)
         {
-            LoadData();
+            PATIENTS pATIENTS = new PATIENTS();
+            pATIENTS.LoadData(dataGridView1, selectQuery);
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -92,21 +65,8 @@ namespace DC
         {
             string Patient_Name = textBox1.Text.Trim();
 
-            string query = "SELECT * FROM Patients WHERE Patient_Name LIKE @Patient_Name";
-
-            using (SqlConnection connection = new SqlConnection("Data Source=localhost;Initial Catalog=DentalCare;Integrated Security=True"))
-            using (SqlCommand command = new SqlCommand(query, connection))
-            {
-                command.Parameters.AddWithValue("@Patient_Name", "%" + Patient_Name + "%");
-                connection.Open();
-                DataTable dataTable = new DataTable();
-
-                using (SqlDataAdapter adapter = new SqlDataAdapter(command))
-                {
-                    adapter.Fill(dataTable);
-                }
-                dataGridView1.DataSource = dataTable;
-            }
+            PATIENTS patients = new PATIENTS();
+            patients.searchdata(dataGridView1, Patient_Name);
         }
 
 
@@ -114,21 +74,8 @@ namespace DC
         {
             string Patient_Name = textBox1.Text.Trim();
 
-            string query = "SELECT * FROM Patients WHERE Patient_Name LIKE @Patient_Name";
-
-            using (SqlConnection connection = new SqlConnection("Data Source=localhost;Initial Catalog=DentalCare;Integrated Security=True"))
-            using (SqlCommand command = new SqlCommand(query, connection))
-            {
-                command.Parameters.AddWithValue("@Patient_Name", "%" + Patient_Name + "%");
-                connection.Open();
-                DataTable dataTable = new DataTable();
-
-                using (SqlDataAdapter adapter = new SqlDataAdapter(command))
-                {
-                    adapter.Fill(dataTable);
-                }
-                dataGridView1.DataSource = dataTable;
-            }
+            PATIENTS patients= new PATIENTS();
+            patients.searchdata(dataGridView1, Patient_Name);
         }
     }
 }

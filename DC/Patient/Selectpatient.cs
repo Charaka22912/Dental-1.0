@@ -15,7 +15,7 @@ namespace DC
     {
         private string connectionString = "Data Source=localhost;Initial Catalog=DentalCare;Integrated Security=True";
 
-        // SQL query to select data from your table
+      
         private string selectQuery = "SELECT * FROM Patients";
         public string SelectedDetails { get; private set; }
         public Selectpatient()
@@ -24,33 +24,8 @@ namespace DC
         }
         private void LoadData()
         {
-            try
-            {
-                // Create a connection 
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    // Create a SqlCommand 
-                    using (SqlCommand command = new SqlCommand(selectQuery, connection))
-                    {
-
-                        connection.Open();
-                        DataTable dataTable = new DataTable();
-
-
-                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
-                        {
-                            adapter.Fill(dataTable);
-                        }
-
-                        // Bind the DataTable to the DataGridView
-                        dataGridView1.DataSource = dataTable;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
+            PATIENTS pATIENTS = new PATIENTS();
+            pATIENTS.LoadData(dataGridView1, selectQuery);
         }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -70,9 +45,9 @@ namespace DC
 
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0) // Make sure a valid row is clicked
+            if (e.RowIndex >= 0) 
             {
-                // Assuming the first column of the DataGridView contains the details
+                
                 SelectedDetails = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
                 DialogResult = DialogResult.OK;
                 Close();
@@ -85,21 +60,8 @@ namespace DC
         {
             string Patient_Name = textBox1.Text.Trim();
 
-            string query = "SELECT * FROM Patients WHERE Patient_Name LIKE @Patient_Name";
-
-            using (SqlConnection connection = new SqlConnection("Data Source=localhost;Initial Catalog=DentalCare;Integrated Security=True"))
-            using (SqlCommand command = new SqlCommand(query, connection))
-            {
-                command.Parameters.AddWithValue("@Patient_Name", "%" + Patient_Name + "%");
-                connection.Open();
-                DataTable dataTable = new DataTable();
-
-                using (SqlDataAdapter adapter = new SqlDataAdapter(command))
-                {
-                    adapter.Fill(dataTable);
-                }
-                dataGridView1.DataSource = dataTable;
-            }
+            PATIENTS patients = new PATIENTS();
+            patients.searchdata(dataGridView1, Patient_Name);
         }
     }
 }
